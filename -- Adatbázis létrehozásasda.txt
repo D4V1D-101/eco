@@ -1,0 +1,100 @@
+-- Adatbázis létrehozása
+CREATE DATABASE EnergiaFogyasztas;
+
+USE EnergiaFogyasztas;
+
+-- Energiaforrások tábla: Típusok és részletes információk
+CREATE TABLE Energiaforrasok (
+    energiaforras_id INT AUTO_INCREMENT PRIMARY KEY,
+    tipus VARCHAR(255) NOT NULL,
+    leiras TEXT,  -- részletes leírás a forrásról
+    kornyezeti_hatas TEXT,  -- környezeti hatások (pl. CO2 kibocsátás)
+    koltseg_egysege DECIMAL(10, 2)  -- költség per MWh (pl. euró/MWh)
+);
+
+-- Országok tábla: Országok adatai
+CREATE TABLE Orszagok (
+    orszag_id INT AUTO_INCREMENT PRIMARY KEY,
+    nev VARCHAR(255) NOT NULL,
+    gdp DECIMAL(15, 2),  -- ország GDP-je (pl. USD-ban)
+    terulet_km2 DECIMAL(10, 2),  -- terület (km^2)
+    fejlettsegi_szint VARCHAR(255)  -- pl. fejlődő, fejlett
+);
+
+-- Energiafogyasztás tábla: Az energiafogyasztás mérése országonként
+CREATE TABLE Energiafogyasztas (
+    fogyasztas_id INT AUTO_INCREMENT PRIMARY KEY,
+    orszag_id INT,
+    ev INT,
+    fogyasztas_mwh DECIMAL(10, 2), -- energiafogyasztás MWh-ban
+    nepesseg INT,  -- ország népessége
+    egy_fore_juto_fogyasztas DECIMAL(10, 2),  -- energiafogyasztás egy főre vetítve
+    FOREIGN KEY (orszag_id) REFERENCES Orszagok(orszag_id)
+);
+
+-- Megújuló energia használatának tábla: Felhasználás megújuló források alapján
+CREATE TABLE MegujuloEnergia (
+    energia_id INT AUTO_INCREMENT PRIMARY KEY,
+    orszag_id INT,
+    ev INT,
+    megujulo_fogyasztas_mwh DECIMAL(10, 2), -- megújuló energia MWh-ban
+    energiaforras_id INT,
+    arany DECIMAL(5, 2),  -- a megújuló energia aránya az összes energiafogyasztásban (százalékban)
+    forraskategoria VARCHAR(255),  -- kategória (pl. napenergia, szélenergia)
+    epites_koltseg DECIMAL(15, 2),  -- az energiaforrás telepítésének költsége (pl. euró)
+    FOREIGN KEY (orszag_id) REFERENCES Orszagok(orszag_id),
+    FOREIGN KEY (energiaforras_id) REFERENCES Energiaforrasok(energiaforras_id)
+);
+
+-- Energiahatékonyság tábla: Az energiahatékonysági intézkedések hatása
+CREATE TABLE EnergiaHatekonysag (
+    hatekonysag_id INT AUTO_INCREMENT PRIMARY KEY,
+    orszag_id INT,
+    ev INT,
+    hatekonysag_eredmeny DECIMAL(5, 2), -- hatékonyság mértéke (pl. %)
+    energia_megtakaritas_mwh DECIMAL(10, 2),  -- energia megtakarítás mennyisége (MWh)
+    emiszios_csokkenes_kgco2 DECIMAL(10, 2),  -- szén-dioxid kibocsátás csökkenése (kgCO2)
+    beruhazas_kolteseg DECIMAL(15, 2),  -- energiahatékonysági beruházás költsége (pl. euró)
+    FOREIGN KEY (orszag_id) REFERENCES Orszagok(orszag_id)
+);
+
+-- Példa adatokat is beletehetünk
+-- Energiaforrások
+INSERT INTO Energiaforrasok (tipus, leiras, kornyezeti_hatas, koltseg_egysege) VALUES
+('Napenergia', 'A napenergia a legbőségesebb megújuló energiaforrás.', 'Nincs CO2 kibocsátás, környezetbarát.', 50.00),
+('Szélenergia', 'A szélenergia a légáramlatok mozgását hasznosítja.', 'Nincs közvetlen szén-dioxid kibocsátás.', 75.00),
+('Vízenergia', 'A vízenergiát vízerőművek segítségével alakítjuk át elektromos energiává.', 'Nincs közvetlen CO2 kibocsátás, de hatással lehet az ökoszisztémára.', 80.00),
+('Geotermikus energia', 'A geotermikus energia a föld belső hőjét hasznosítja.', 'Csökkenti a fosszilis tüzelőanyagok használatát.', 90.00),
+('Biomassza', 'A biomassza növényekből és állati maradványokból származó energia.', 'CO2-t bocsát ki, de fenntartható, ha megfelelően kezelik.', 60.00);
+
+-- Országok
+INSERT INTO Orszagok (nev, gdp, terulet_km2, fejlettsegi_szint) VALUES
+('Magyarország', 150000, 93030, 'Fejlett'),
+('Németország', 4000000, 357022, 'Fejlett'),
+('Franciaország', 2700000, 643801, 'Fejlett'),
+('USA', 21000000, 9833517, 'Fejlett'),
+('India', 2900000, 3287263, 'Fejlődő');
+
+-- Energiafogyasztás
+INSERT INTO Energiafogyasztas (orszag_id, ev, fogyasztas_mwh, nepesseg, egy_fore_juto_fogyasztas) VALUES
+(1, 2023, 50000, 10000000, 5.00),
+(2, 2023, 350000, 80000000, 4.38),
+(3, 2023, 250000, 67000000, 3.73),
+(4, 2023, 1000000, 330000000, 3.03),
+(5, 2023, 300000, 1300000000, 0.23);
+
+-- Megújuló energia
+INSERT INTO MegujuloEnergia (orszag_id, ev, megujulo_fogyasztas_mwh, energiaforras_id, arany, forraskategoria, epites_koltseg) VALUES
+(1, 2023, 20000, 1, 40.00, 'Napenergia', 5000000),
+(2, 2023, 140000, 2, 50.00, 'Szélenergia', 20000000),
+(3, 2023, 120000, 3, 48.00, 'Vízenergia', 15000000),
+(4, 2023, 500000, 4, 50.00, 'Geotermikus energia', 25000000),
+(5, 2023, 70000, 5, 23.33, 'Biomassza', 10000000);
+
+-- Energiahatékonyság
+INSERT INTO EnergiaHatekonysag (orszag_id, ev, hatekonysag_eredmeny, energia_megtakaritas_mwh, emiszios_csokkenes_kgco2, beruhazas_kolteseg) VALUES
+(1, 2023, 10.00, 5000, 25000, 2000000),
+(2, 2023, 15.00, 20000, 100000, 10000000),
+(3, 2023, 12.00, 15000, 75000, 8000000),
+(4, 2023, 18.00, 90000, 450000, 15000000),
+(5, 2023, 8.00, 4000, 20000, 5000000);
