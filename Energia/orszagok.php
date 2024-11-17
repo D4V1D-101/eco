@@ -11,6 +11,7 @@ $result = $conn->query($sql);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
     <title>Országadatok Megjelenítése</title>
 </head>
 <body>
@@ -28,7 +29,7 @@ $result = $conn->query($sql);
         if ($result->num_rows > 0) {
             while($row = $result->fetch_assoc()) {
                 echo "<tr>
-                        <td><a href='orszag_reszletek.php?orszag_id={$row['orszag_id']}'>{$row['nev']}</a></td>
+                        <td>{$row['nev']}  <a href='orszag_reszletek.php?orszag_id={$row['orszag_id']}'>Fogyasztás</a> <a href='megujjulo_energia.php?orszag_id={$row['orszag_id']}'>megujjulo alkalmazott energia</a>  </td>
                         <td>{$row['gdp']}</td>
                         <td>{$row['terulet_km2']}</td>
                         <td>{$row['fejlettsegi_szint']}</td>

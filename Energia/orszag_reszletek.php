@@ -8,7 +8,7 @@ if (isset($_GET['orszag_id'])) {
     $orszag_result = $conn->query($orszag_sql);
     $orszag_nev = $orszag_result->fetch_assoc()['nev'] ?? 'Ismeretlen ország';
 
-    $energia_sql = "SELECT ev, fogyasztas_mwh, egy_fore_juto_fogyasztas 
+    $energia_sql = "SELECT ev, fogyasztas_mwh, egy_fore_juto_fogyasztas, nepesseg
                     FROM Energiafogyasztas 
                     WHERE orszag_id = $orszag_id 
                     ORDER BY ev ASC";
@@ -34,6 +34,7 @@ if (isset($_GET['orszag_id'])) {
         <tr>
             <th>Év</th>
             <th>Fogyasztás (MWh)</th>
+            <th>Népesség</th>
             <th>Egy főre jutó fogyasztás (MWh)</th>
         </tr>
         
@@ -43,6 +44,7 @@ if (isset($_GET['orszag_id'])) {
                 echo "<tr>
                         <td>{$row['ev']}</td>
                         <td>{$row['fogyasztas_mwh']}</td>
+                        <td>{$row['nepesseg']}</td>
                         <td>{$row['egy_fore_juto_fogyasztas']}</td>
                     </tr>";
             }
