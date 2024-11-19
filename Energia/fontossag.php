@@ -1,40 +1,34 @@
 <?php
 include 'connect.php';
-
 $sql = "SELECT orszag_id, nev, gdp, terulet_km2, fejlettsegi_szint FROM Orszagok";
 $result = $conn->query($sql);
 ?>
 <!DOCTYPE html>
-<html lang="hu">
-
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>Országadatok Megjelenítése</title>
+    <title>Document</title>
 </head>
-
 <body>
     <header>
         <div class="headerContainer">
-            <a href="fontossag.php">Megujuló Energia Fontossága</a>
-            <input type="text" id="searchBox" placeholder="Keresés az országok között...">
+        <a href="orszagok.php">Vissza az országok listájához</a>
         </div>
     </header>
 
     <main>
         <div class="wrapper">
             <div class="country">
-                <h1>Országadatok</h1>
+                <h1></h1>
             </div>
 
             <table id="countryTable">
                 <thead>
                     <tr>
                         <th>Ország Név</th>
-                        <th>GDP (millió USD)</th>
-                        <th>Terület (km²)</th>
-                        <th>Fejlettségi Szint</th>
+                        <th>Ugrás a megújuló energia fontosságára</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -42,15 +36,8 @@ $result = $conn->query($sql);
                     if ($result->num_rows > 0) {
                         while ($row = $result->fetch_assoc()) {
                             echo "<tr>
-                                    <td class='tdCountry'>{$row['nev']} 
-                                        <div class='tdButtons'>
-                                        <button><a href='orszag_reszletek.php?orszag_id={$row['orszag_id']}'>Fogyasztás</a></button>
-                                        <button><a href='megujjulo_energia.php?orszag_id={$row['orszag_id']}'>Megújuló energia</a></button>
-                                        </div>
-                                    </td>
-                                    <td>{$row['gdp']}</td>
-                                    <td>{$row['terulet_km2']}</td>
-                                    <td>{$row['fejlettsegi_szint']}</td>
+                                    <td>{$row['nev']}</td>
+                                    <td class='tdCountry'><button><a href='megujulas_takarekossaga.php?orszag_id={$row['orszag_id']}'>Fogyasztás</a></button></td>
                                 </tr>";
                         }
                     } else {
@@ -70,5 +57,4 @@ $result = $conn->query($sql);
     <script src="search.js"></script>
 </html>
 </body>
-
 </html>

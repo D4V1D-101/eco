@@ -28,34 +28,51 @@ if (isset($_GET['orszag_id'])) {
     <title>Ország Részletek: <?php echo htmlspecialchars($orszag_nev); ?></title>
 </head>
 <body>
-    <h1>Ország Részletek: <?php echo htmlspecialchars($orszag_nev); ?></h1>
+    <header>
+        <div class="headerContainer">
+        <a href="orszagok.php">Vissza az országok listájához</a>
+        </div>
+    </header>
 
-    <table>
-        <tr>
-            <th>Év</th>
-            <th>Fogyasztás (MWh)</th>
-            <th>Népesség</th>
-            <th>Egy főre jutó fogyasztás (MWh)</th>
-        </tr>
-        
-        <?php
-        if ($energia_result->num_rows > 0) {
-            while ($row = $energia_result->fetch_assoc()) {
-                echo "<tr>
-                        <td>{$row['ev']}</td>
-                        <td>{$row['fogyasztas_mwh']}</td>
-                        <td>{$row['nepesseg']}</td>
-                        <td>{$row['egy_fore_juto_fogyasztas']}</td>
-                    </tr>";
-            }
-        } else {
-            echo "<tr><td colspan='3'>Nincs megjeleníthető adat</td></tr>";
-        }
-        ?>
-    </table>
+    <main>
+        <div class="wrapper">
+            <div class="country">
+                <h1>Ország Részletek: <?php echo htmlspecialchars($orszag_nev); ?></h1>
+            </div>
+            <table id="countryTable">
+                <thead>
+                    <tr>
+                    <th>Év</th>
+                    <th>Fogyasztás (MWh)</th>
+                    <th>Népesség</th>
+                    <th>Egy főre jutó fogyasztás (MWh)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                    if ($energia_result->num_rows > 0) {
+                        while ($row = $energia_result->fetch_assoc()) {
+                            echo "<tr>
+                                    <td>{$row['ev']}</td>
+                                    <td>{$row['fogyasztas_mwh']}</td>
+                                    <td>{$row['nepesseg']}</td>
+                                    <td>{$row['egy_fore_juto_fogyasztas']}</td>
+                                </tr>";
+                        }
+                    } else {
+                        echo "<tr><td colspan='4'>Nincs megjeleníthető adat</td></tr>";
+                    }
+                    ?>
+                </tbody>
+            </table>
+        </div>
+    </main>
 
-    <a href="orszagok.php">Vissza az országok listájához</a>
-
-    <?php $conn->close(); ?>
+    <footer>
+        <div class="footerontainer">
+            <p>&copy; <?php echo date('Y'); ?> Országadatok Megjelenítése</p>
+        </div>
+    </footer>
+</html>
 </body>
 </html>
