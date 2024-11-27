@@ -1,1 +1,8 @@
 # eco
+
+
+
+
+
+
+energiatakarekony.sql ajó
