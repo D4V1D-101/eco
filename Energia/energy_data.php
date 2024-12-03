@@ -3,7 +3,7 @@
 require 'connect.php';
 
 // Adatok lekérdezése a táblából
-$query = "SELECT * FROM energiafogyasztas";
+$query = "SELECT * FROM renewable_energy";
 $result = mysqli_query($conn, $query);
 
 if (!$result) {

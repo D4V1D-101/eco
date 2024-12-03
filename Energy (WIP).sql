@@ -1,4 +1,4 @@
-CREATE TABLE `Countries` (
+CREATE TABLE `countries` (
   `country_id` INT PRIMARY KEY AUTO_INCREMENT,
   `name` VARCHAR(255) NOT NULL,
   `iso_alpha3` VARCHAR(3) NOT NULL,
@@ -9,7 +9,7 @@ CREATE TABLE `Countries` (
   `developement_level` VARCHAR(255)
 );
 
-CREATE TABLE `EnergySources` (
+CREATE TABLE `energy_sources` (
   `energy_source_id` INT PRIMARY KEY AUTO_INCREMENT,
   `renewable` BOOL,
   `origin` VARCHAR(255),
@@ -18,7 +18,7 @@ CREATE TABLE `EnergySources` (
   `environmental_effect` TEXT
 );
 
-CREATE TABLE `EnergyConsumption` (
+CREATE TABLE `energy_consumption` (
   `energy_consumption_id` INT PRIMARY KEY AUTO_INCREMENT,
   `energy_source_id` INT,
   `country_id` INT,
@@ -26,7 +26,7 @@ CREATE TABLE `EnergyConsumption` (
   `consumption_mwh` DECIMAL(10,2)
 );
 
-CREATE TABLE `EnergyProduction` (
+CREATE TABLE `energy_production` (
   `energy_production_id` INT PRIMARY KEY AUTO_INCREMENT,
   `country_id` INT,
   `energy_source_id` INT,
@@ -34,31 +34,30 @@ CREATE TABLE `EnergyProduction` (
   `production_mwh` DECIMAL(10,2)
 );
 
-CREATE TABLE `MegujuloEnergia` (
-  `energia_id` INT PRIMARY KEY AUTO_INCREMENT,
-  `orszag_id` INT,
-  `ev` INT,
-  `megujulo_fogyasztas_mwh` DECIMAL(10,2),
-  `energiaforras_id` INT,
-  `arany` DECIMAL(5,2),
-  `forraskategoria` VARCHAR(255),
-  `epites_koltseg` DECIMAL(15,2)
+CREATE TABLE `transition_progress` (
+  `progress_id` INT PRIMARY KEY AUTO_INCREMENT,
+  `country_id` INT NOT NULL,
+  `year` INT NOT NULL,
+  `renewable_share` DECIMAL(5,2),
+  `carbon_emissions` DECIMAL(15,2)
 );
 
-CREATE TABLE `EnergiaHatekonysag` (
-  `hatekonysag_id` INT PRIMARY KEY AUTO_INCREMENT,
-  `orszag_id` INT,
-  `ev` INT,
-  `hatekonysag_eredmeny` DECIMAL(5,2),
-  `energia_megtakaritas_mwh` DECIMAL(10,2),
-  `emiszios_csokkenes_kgco2` DECIMAL(10,2),
-  `beruhazas_kolteseg` DECIMAL(15,2)
+CREATE TABLE `investments` (
+  `investment_id` INT PRIMARY KEY AUTO_INCREMENT,
+  `country_id` INT NOT NULL,
+  `year` INT NOT NULL,
+  `amount_usd` DECIMAL(15,2),
+  `sector` VARCHAR(255)
 );
 
-ALTER TABLE `EnergyConsumption` ADD FOREIGN KEY (`country_id`) REFERENCES `Countries` (`country_id`);
+ALTER TABLE `investments` ADD FOREIGN KEY (`country_id`) REFERENCES `countries` (`country_id`);
 
-ALTER TABLE `EnergyConsumption` ADD FOREIGN KEY (`energy_source_id`) REFERENCES `EnergySources` (`energy_source_id`);
+ALTER TABLE `transition_progress` ADD FOREIGN KEY (`country_id`) REFERENCES `countries` (`country_id`);
 
-ALTER TABLE `EnergyProduction` ADD FOREIGN KEY (`energy_source_id`) REFERENCES `EnergySources` (`energy_source_id`);
+ALTER TABLE `energy_consumption` ADD FOREIGN KEY (`country_id`) REFERENCES `countries` (`country_id`);
 
-ALTER TABLE `EnergyProduction` ADD FOREIGN KEY (`country_id`) REFERENCES `Countries` (`country_id`);
+ALTER TABLE `energy_consumption` ADD FOREIGN KEY (`energy_source_id`) REFERENCES `energy_sources` (`energy_source_id`);
+
+ALTER TABLE `energy_production` ADD FOREIGN KEY (`energy_source_id`) REFERENCES `energy_sources` (`energy_source_id`);
+
+ALTER TABLE `energy_production` ADD FOREIGN KEY (`country_id`) REFERENCES `countries` (`country_id`);

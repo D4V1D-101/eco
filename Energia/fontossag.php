@@ -1,6 +1,6 @@
 <?php
 include 'connect.php';
-$sql = "SELECT orszag_id, nev, gdp, terulet_km2, fejlettsegi_szint FROM Orszagok";
+$sql = "SELECT country_id, name, iso_alpha3, area_km2, fejlettsegi_szint FROM Orszagok";
 $result = $conn->query($sql);
 ?>
 

@@ -1,7 +1,7 @@
 <?php
 include 'connect.php';
 
-$sql = "SELECT orszag_id, nev, gdp, terulet_km2, fejlettsegi_szint FROM Orszagok";
+$sql = "SELECT country_id, name, iso_alpha3, area_km2, population, gdp, hdi, developement_level FROM countries";
 $result = $conn->query($sql);
 ?>
 
@@ -12,38 +12,41 @@ $result = $conn->query($sql);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>Országadatok</title>
+    <title>Countries</title>
 </head>
 
 <body>
     <header>
         <div class="header-container">
             <select id="dropdown" onchange="window.location.href=this.value;">
-                <option value="#">Válasszon...</option>
+                <option value="#">Choose</option>
                 <option value="index.php">Index</option>
-                <option value="orszagok.php">Országok</option>
-                <option value="fontossag.php">Fontosság</option>
+                <option value="orszagok.php">Countries</option>
+                <option value="fontossag.php">Anyád</option>
             </select>
 
-            <input type="text" id="searchBox" placeholder="Keresés az országok között...">
+            <input type="text" id="searchBox" placeholder="Search for countries...">
         </div>
     </header>
 
     <main>
         <div class="wrapper">
             <div class="country">
-                <h1>Országadatok</h1>
+                <h1>Countries</h1>
             </div>
 
             <table>
                 <thead>
                     <tr>
-                        <th>Ország Név</th>
-                        <th>Fogyasztás</th>
-                        <th>Megújuló energia</th>
-                        <th>GDP (millió USD)</th>
-                        <th>Terület (km²)</th>
-                        <th>Fejlettségi Szint</th>
+                        <th>Name</th>
+                        <th>Iso Alpha3</th>
+                        <th>Consumption</th>
+                        <th>Production</th>
+                        <th>Area (km²)</th>
+                        <th>Population</th>
+                        <th>GDP</th>
+                        <th>HDI</th>
+                        <th>Developement Level</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -51,16 +54,19 @@ $result = $conn->query($sql);
                     if ($result->num_rows > 0) {
                         while ($row = $result->fetch_assoc()) {
                             echo "<tr>
-                                    <td>{$row['nev']}</td>
-                                    <td><a href='orszag_reszletek.php?orszag_id={$row['orszag_id']}'><button class='animated-button'>Fogyasztás</button></a></td>
-                                    <td><a href='megujulo_energia.php?orszag_id={$row['orszag_id']}'><button class='animated-button'>Megújuló energia</button></a></td>
+                                    <td>{$row['name']}</td>
+                                    <td>{$row['iso_alpha3']}</td>
+                                    <td><a href='energy_consumption.php?country_id={$row['country_id']}'><button class='animated-button'>Consumption</button></a></td>
+                                    <td><a href='energy_production.php?country_id={$row['country_id']}'><button class='animated-button'>Production</button></a></td>
+                                    <td>{$row['area_km2']}</td>
+                                    <td>{$row['population']}</td>
                                     <td>{$row['gdp']}</td>
-                                    <td>{$row['terulet_km2']}</td>
-                                    <td>{$row['fejlettsegi_szint']}</td>
+                                    <td>{$row['hdi']}</td>
+                                    <td>{$row['developement_level']}</td>
                                 </tr>";
                         }
                     } else {
-                        echo "<tr><td colspan='4'>Nincs megjeleníthető adat</td></tr>";
+                        echo "<tr><td colspan='4'>Nothing to see here...</td></tr>";
                     } ?>
                 </tbody>
             </table>
@@ -68,7 +74,7 @@ $result = $conn->query($sql);
     </main>
 
     <footer>
-        <p>&copy; <?php echo date('Y'); ?> Országadatok Megjelenítése</p>
+        <p>&copy; <?php echo date('Y'); ?> Country data</p>
     </footer>
     <script src="search.js"></script>
 

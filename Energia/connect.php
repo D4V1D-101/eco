@@ -2,7 +2,7 @@
 $servername = "localhost";
 $username = "root";
 $password = "";
-$dbname = "energiahatekony";
+$dbname = "renewable_energy";
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 
