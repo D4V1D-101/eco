@@ -21,31 +21,31 @@ if (isset($_GET['orszag_id'])) {
 
 <!DOCTYPE html>
 <html lang="hu">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>Ország Részletek: <?php echo htmlspecialchars($orszag_nev); ?></title>
+    <title><?php echo htmlspecialchars($orszag_nev); ?></title>
 </head>
+
 <body>
     <header>
-        <div class="headerContainer">
-        <a href="orszagok.php">Vissza az országok listájához</a>
-        </div>
+
     </header>
 
     <main>
         <div class="wrapper">
-            <div class="country">
+            <div>
                 <h1>Ország Részletek: <?php echo htmlspecialchars($orszag_nev); ?></h1>
             </div>
-            <table id="countryTable">
+            <table>
                 <thead>
                     <tr>
-                    <th>Év</th>
-                    <th>Fogyasztás (MWh)</th>
-                    <th>Népesség</th>
-                    <th>Egy főre jutó fogyasztás (MWh)</th>
+                        <th>Év</th>
+                        <th>Fogyasztás (MWh)</th>
+                        <th>Népesség</th>
+                        <th>Egy főre jutó fogyasztás (MWh)</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -64,15 +64,16 @@ if (isset($_GET['orszag_id'])) {
                     }
                     ?>
                 </tbody>
+                <td><a href="orszagok.php"><button class="animated-button">Vissza</button></a></td>
             </table>
         </div>
     </main>
 
     <footer>
-        <div class="footerontainer">
-            <p>&copy; <?php echo date('Y'); ?> Országadatok Megjelenítése</p>
-        </div>
+        <p>&copy; <?php echo date('Y'); ?> Országadatok Megjelenítése</p>
     </footer>
+
 </html>
 </body>
+
 </html>
