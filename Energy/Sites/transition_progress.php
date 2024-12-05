@@ -1,5 +1,5 @@
 <?php
-include './connect.php';
+include '../connect.php';
 
 $sql = "SELECT t.progress_id, c.name as country_name, t.year, t.renewable_share, t.carbon_emissions 
         FROM transition_progress t 
