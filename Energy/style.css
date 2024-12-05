@@ -1,0 +1,129 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f7f7f7;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 100% 100%;
+    background-image: url("../MainBg.jpg");
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+header {
+    background-color: #717C89;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    align-items: center;
+}
+
+.header-container {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+main {
+    display: flex;
+    margin: 5rem;
+    justify-content: center;
+}
+
+a {
+    text-decoration: none;
+    color: #aacdfc;
+    font-size: 20px;
+}
+
+.wrapper {
+    width: 75%;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+table {
+    width: 100%;
+    border-radius: 10px;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+table th,
+table td {
+    padding: 15px;
+    text-align: left;
+}
+
+table th {
+    background-color: #8AA2A9;
+    color: #333;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+table tr:nth-child(even) {
+    background-color: #f0f0f0;
+}
+
+footer {
+    background-color: #8AA2A9;
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+    margin-top: auto;
+}
+
+.animated-button {
+    position: relative;
+    overflow: hidden;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    background-color: #A1E5AB;
+    border-radius: 20px;
+    transition: background-color 0.3s ease;
+    z-index: 1;
+    color: black;
+}
+
+.animated-button:hover {
+    background-color: #A1E5AB;
+    color: white;
+}
+
+.animated-button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background-color: #4A90E2;
+    z-index: -1;
+    transition: left 0.3s ease-in-out;
+}
+
+.animated-button:hover::before {
+    left: 0;
+}
+
+#searchBox,
+#dropdown {
+    width: 20rem;
+    padding: 10px;
+    font-size: 1em;
+    border-radius: 10px;
+    border: 1px, solid, #c9c9c9;
+}
