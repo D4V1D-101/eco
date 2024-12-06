@@ -1,8 +1,8 @@
 <?php
 $servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "renewable_energy";
+$username = "energyfelhaszn";
+$password = "energyadmin123--";
+$dbname = "energyfelhaszn";
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 

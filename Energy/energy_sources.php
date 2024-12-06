@@ -1,12 +1,12 @@
 <?php
-include '../connect.php';
+include 'connect.php';
 
 $sql = "SELECT energy_source_id, renewable, origin, energy_type, description, environmental_effect FROM energy_sources";
 $result = $conn->query($sql);
 
 $pageName = "Energy Sources";
-include '../semantic_lmnts/head.php';
-include '../semantic_lmnts/header.php'; ?>
+include 'head.php';
+include 'header.php'; ?>
 
 <main>
     <div class="wrapper">
@@ -41,8 +41,8 @@ include '../semantic_lmnts/header.php'; ?>
     </div>
 </main>
 
-<?php include '../semantic_lmnts/footer.php'; ?>
-<script src="../JavaScript/search.js"></script>
+<?php include 'footer.php'; ?>
+<script src="search.js"></script>
 
 </body>
 

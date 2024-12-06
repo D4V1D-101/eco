@@ -1,12 +1,12 @@
 <?php
-include '../connect.php';
+include 'connect.php';
 
 $sql = "SELECT country_id, name, iso_alpha3, area_km2, population, gdp, hdi, developement_level FROM countries";
 $result = $conn->query($sql);
 
 $pageName = "Countries";
-include '../semantic_lmnts/head.php';
-include '../semantic_lmnts/header.php'; ?>
+include 'head.php';
+include 'header.php'; ?>
 
 <main>
     <div class="wrapper">
@@ -49,9 +49,9 @@ include '../semantic_lmnts/header.php'; ?>
     </div>
 </main>
 
-<?php include '../semantic_lmnts/footer.php'; ?>
+<?php include 'footer.php'; ?>
 
-<script src="../JavaScript/search.js"></script>
+<script src="search.js"></script>
 
 </html>
 </body>

@@ -1,7 +1,7 @@
 <?php
 $pageName = "Index";
-include '../semantic_lmnts/head.php';
-include '../semantic_lmnts/header.php'; ?>
+include 'head.php';
+include 'header.php'; ?>
 
 <main>
     <div class="wrapper">
@@ -19,10 +19,10 @@ include '../semantic_lmnts/header.php'; ?>
     </div>
 </main>
 
-<?php include '../semantic_lmnts/footer.php'; ?>
+<?php include 'footer.php'; ?>
 
-<script src="../JavaScript/chart.js"></script>
-<script src="../JavaScript/search.js"></script>
+<script src="chart.js"></script>
+<script src="search.js"></script>
 </body>
 
 </html>

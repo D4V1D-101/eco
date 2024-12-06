@@ -1,5 +1,5 @@
 <?php
-include '../connect.php';
+include 'connect.php';
 
 $sql = "SELECT i.investment_id, c.name as country_name, i.year, i.amount_usd, i.sector 
         FROM investments i 
@@ -7,8 +7,8 @@ $sql = "SELECT i.investment_id, c.name as country_name, i.year, i.amount_usd, i.
 $result = $conn->query($sql);
 
 $pageName = "Investments";
-include '../semantic_lmnts/head.php';
-include '../semantic_lmnts/header.php'; ?>
+include 'head.php';
+include 'header.php'; ?>
 
 <main>
     <div class="wrapper">
@@ -41,8 +41,8 @@ include '../semantic_lmnts/header.php'; ?>
     </div>
 </main>
 
-<?php include '../semantic_lmnts/footer.php'; ?>
-<script src="../semantic_lmnts/search.js"></script>
+<?php include 'footer.php'; ?>
+<script src="search.js"></script>
 
 </body>
 

@@ -1,3 +1,4 @@
+/* Alapbeállítások */
 * {
     margin: 0;
     padding: 0;
@@ -5,102 +6,133 @@
 }
 
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f7f7f7;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-size: 100% 100%;
-    background-image: url("../MainBg.jpg");
+    font-family: 'Arial', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f5f5f5;
     color: #333;
+    line-height: 1.6;
     display: flex;
     flex-direction: column;
     min-height: 100vh;
 }
 
+/* Fejléc */
 header {
-    background-color: #717C89;
+    background-color: #344955;
     color: #fff;
     display: flex;
-    justify-content: space-between;
-    padding: 20px;
-    align-items: center;
-}
-
-.header-container {
-    width: 100%;
-    display: flex;
+    flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    padding: 15px 30px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-main {
-    display: flex;
-    margin: 5rem;
-    justify-content: center;
-}
-
-a {
+header a {
+    color: #ffcc00;
     text-decoration: none;
-    color: #aacdfc;
-    font-size: 20px;
+    font-size: 18px;
+    margin-left: 15px;
+}
+
+header a:hover {
+    color: #ffe680;
+}
+
+/* Fő tartalom */
+main {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 20px;
 }
 
 .wrapper {
-    width: 75%;
+    width: 100%;
+    max-width: 1200px;
     background-color: #fff;
-    padding: 20px;
     border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+/* Táblázat */
 table {
     width: 100%;
-    border-radius: 10px;
     border-collapse: collapse;
-    margin-top: 20px;
+    margin: 20px 0;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
 }
 
 table th,
 table td {
     padding: 15px;
     text-align: left;
+    border-bottom: 1px solid #ddd;
 }
 
 table th {
-    background-color: #8AA2A9;
-    color: #333;
+    background-color: #4a6572;
+    color: #fff;
     text-transform: uppercase;
+    font-size: 14px;
     font-weight: bold;
 }
 
 table tr:nth-child(even) {
-    background-color: #f0f0f0;
+    background-color: #f9f9f9;
 }
 
-footer {
-    background-color: #8AA2A9;
-    color: #fff;
-    text-align: center;
-    padding: 20px;
-    margin-top: auto;
+table tr:hover {
+    background-color: #e0f7fa;
 }
 
+table td a {
+    color: #4a90e2;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+table td a:hover {
+    color: #0066cc;
+}
+
+
+
+
+
+/* Gombok */
 .animated-button {
+    padding: 10px 20px;
+    font-size: 14px;
+    border: none;
+
     position: relative;
     overflow: hidden;
-    padding: 10px 20px;
-    font-size: 16px;
-    border: none;
-    cursor: pointer;
-    background-color: #A1E5AB;
-    border-radius: 20px;
-    transition: background-color 0.3s ease;
     z-index: 1;
-    color: black;
+
+    border-radius: 20px;
+    background-color: #4caf50;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .animated-button:hover {
-    background-color: #A1E5AB;
+    background-color: #45a049;
+    transform: scale(1.05);
     color: white;
+}
+
+.animated-button:focus {
+    outline: none;
+    box-shadow: 0 0 5px #45a049;
+}
+
+.animated-button:hover::before {
+    left: 0;
 }
 
 .animated-button::before {
@@ -115,8 +147,77 @@ footer {
     transition: left 0.3s ease-in-out;
 }
 
-.animated-button:hover::before {
-    left: 0;
+
+
+
+/* Reszponzivitás */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 20px;
+    }
+
+    header a {
+        margin: 5px 0;
+        font-size: 16px;
+    }
+
+    .wrapper {
+        padding: 15px;
+    }
+
+    table {
+        font-size: 14px;
+    }
+
+    table th,
+    table td {
+        padding: 10px;
+    }
+
+    table,
+    thead,
+    tbody,
+    th,
+    td,
+    tr {
+        display: block;
+    }
+
+    thead tr {
+        display: none;
+    }
+
+    tbody tr {
+        margin-bottom: 10px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        padding: 10px;
+        background-color: #fff;
+    }
+
+    tbody td {
+        display: flex;
+        justify-content: space-between;
+        padding: 10px 0;
+    }
+
+    tbody td::before {
+        content: attr(data-label);
+        font-weight: bold;
+        color: #555;
+    }
+}
+
+/* Lábjegyzet */
+footer {
+    background-color: #344955;
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+    margin-top: auto;
+    font-size: 14px;
 }
 
 #searchBox,

@@ -1,5 +1,5 @@
 <?php
-include '../connect.php';
+include 'connect.php';
 
 $country_id = $_GET['country_id'] ?? null;
 
@@ -18,8 +18,8 @@ if ($country_id) {
 }
 
 $pageName = "Production";
-include '../semantic_lmnts/head.php';
-include '../semantic_lmnts/header.php'; ?>
+include 'head.php';
+include 'header.php'; ?>
 
 <main>
     <div class="wrapper">
@@ -50,9 +50,9 @@ include '../semantic_lmnts/header.php'; ?>
     </div>
 </main>
 
-<?php include '../semantic_lmnts/footer.php'; ?>
+<?php include 'footer.php'; ?>
 
-<script src="../JavaScript/search.js"></script>
+<script src="search.js"></script>
 </body>
 
 </html>

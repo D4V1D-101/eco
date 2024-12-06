@@ -1,5 +1,5 @@
 <?php
-include '../connect.php';
+include 'connect.php';
 
 $sql = "SELECT t.progress_id, c.name as country_name, t.year, t.renewable_share, t.carbon_emissions 
         FROM transition_progress t 
@@ -7,8 +7,8 @@ $sql = "SELECT t.progress_id, c.name as country_name, t.year, t.renewable_share,
 $result = $conn->query($sql);
 
 $pageName = "Transition Progress";
-include '../semantic_lmnts/head.php';
-include '../semantic_lmnts/header.php'; ?>
+include 'head.php';
+include 'header.php'; ?>
 
 <main>
     <div class="wrapper">
@@ -41,8 +41,8 @@ include '../semantic_lmnts/header.php'; ?>
     </div>
 </main>
 
-<?php include '../semantic_lmnts/footer.php'; ?>
-<script src="../JavaScript/search.js"></script>
+<?php include 'footer.php'; ?>
+<script src="search.js"></script>
 
 </body>
 

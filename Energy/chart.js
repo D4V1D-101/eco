@@ -1,4 +1,4 @@
-const dataUrl = "http://localhost/EnergyConsumptionProject/eco/Energy/energy_data.php";
+const dataUrl = "energy_data.php";
 
 fetch(dataUrl)
     .then(function (response) {
