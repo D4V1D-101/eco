@@ -1,0 +1,293 @@
+/* Alapbeállítások */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    cursor: none;
+}
+input, textarea, select {
+    cursor: none;
+}
+body {
+    cursor: none; /* Egyedi kurzor */
+    font-family: 'Arial', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(45deg, #002c02, #00b409, #00a2ff, #ade1ff);
+    background-size: 300% 300%;
+    animation: color 5s ease-in-out infinite;
+    color: #333;
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Egyedi kurzor */
+.cursor-dot {
+    width: 5px;
+    height: 5px;
+    background-color: rgb(255, 0, 0);
+    position: fixed;
+    top: 0;
+    left: 0;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    z-index: 1;
+    pointer-events: none;
+    z-index: 9999;
+}
+
+.cursor-outline {
+    width: 30px;
+    height: 30px;
+    border: 2px solid hsla(0, 100%, 50%, 0.5);
+    position: fixed;
+    top: 0;
+    left: 0;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    z-index: 1;
+    pointer-events: none;
+    z-index: 9999;
+}
+
+/* Animációk */
+@keyframes color {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* Fejléc */
+header {
+    background-color: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+header a {
+    color: #ffcc00;
+    text-decoration: none;
+    font-size: 18px;
+    margin-left: 15px;
+}
+
+header a:hover {
+    color: #ffe680;
+}
+
+/* Fő tartalom */
+main {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 20px;
+    flex: 1;
+}
+
+#game-container {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 800px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#game-board {
+    position: relative;
+    width: 600px;
+    height: 400px;
+    background-color: #e3e3e3;
+    border-radius: 10px;
+    margin: 20px 0;
+    overflow: hidden;
+}
+
+.wrapper {
+    width: 100%;
+    max-width: 1200px;
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Táblázatok */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+table th,
+table td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+table th {
+    background-color: #4a6572;
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+table tr:hover {
+    background-color: #e0f7fa;
+}
+
+table td a {
+    color: #4a90e2;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+table td a:hover {
+    color: #0066cc;
+}
+
+/* Gombok */
+.animated-button {
+    padding: 10px 20px;
+    font-size: 14px;
+    border: none;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    border-radius: 20px;
+    background-color: #4caf50;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.animated-button:hover {
+    background-color: #45a049;
+    transform: scale(1.05);
+    color: white;
+}
+
+.animated-button:focus {
+    outline: none;
+    box-shadow: 0 0 5px #45a049;
+}
+
+.animated-button:hover::before {
+    left: 0;
+}
+
+.animated-button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background-color: #4A90E2;
+    z-index: -1;
+    transition: left 0.3s ease-in-out;
+}
+
+/* Reszponzivitás */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 20px;
+    }
+
+    header a {
+        margin: 5px 0;
+        font-size: 16px;
+    }
+
+    .wrapper {
+        padding: 15px;
+    }
+
+    table {
+        font-size: 14px;
+    }
+
+    table th,
+    table td {
+        padding: 10px;
+    }
+
+    table,
+    thead,
+    tbody,
+    th,
+    td,
+    tr {
+        display: block;
+    }
+
+    thead tr {
+        display: none;
+    }
+
+    tbody tr {
+        margin-bottom: 10px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        padding: 10px;
+        background-color: #fff;
+    }
+
+    tbody td {
+        display: flex;
+        justify-content: space-between;
+        padding: 10px 0;
+    }
+
+    tbody td::before {
+        content: attr(data-label);
+        font-weight: bold;
+        color: #555;
+    }
+}
+
+/* Lábjegyzet */
+footer {
+    background-color: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+    margin-top: auto;
+    font-size: 14px;
+}
+
+#searchBox,
+#dropdown {
+    width: 20rem;
+    padding: 10px;
+    font-size: 1em;
+    border-radius: 10px;
+    border: 1px solid #c9c9c9;
+}
