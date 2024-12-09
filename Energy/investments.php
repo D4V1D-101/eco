@@ -9,7 +9,8 @@ $result = $conn->query($sql);
 $pageName = "Investments";
 include 'head.php';
 include 'header.php'; ?>
-
+<div class="cursor-dot" data-cursor-dot></div>
+<div class="cursor-outline" data-cursor-outline></div>
 <main>
     <div class="wrapper">
         <table id="investmentTable">
@@ -43,6 +44,7 @@ include 'header.php'; ?>
 
 <?php include 'footer.php'; ?>
 <script src="search.js"></script>
+<script src="cursor.js"></script>
 
 </body>
 

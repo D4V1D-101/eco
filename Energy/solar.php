@@ -2,7 +2,8 @@
 $pageName = "Solar Farm Manager";
 include 'head.php';
 include 'header.php'; ?>
-
+<div class="cursor-dot" data-cursor-dot></div>
+<div class="cursor-outline" data-cursor-outline></div>
 <main>
     <div id="game-container">
         <h1>Solar Farm Manager</h1>
@@ -18,7 +19,7 @@ include 'header.php'; ?>
 <!-- SweetAlert2 JS -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.all.min.js"></script>
 <script src="game.js"></script>
-
+<script src="cursor.js"></script>
 <?php include 'footer.php'; ?>
 </body>
 

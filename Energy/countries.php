@@ -7,7 +7,8 @@ $result = $conn->query($sql);
 $pageName = "Countries";
 include 'head.php';
 include 'header.php'; ?>
-
+<div class="cursor-dot" data-cursor-dot></div>
+<div class="cursor-outline" data-cursor-outline></div>
 <main>
     <div class="wrapper">
         <table id="countryTable">
@@ -50,7 +51,7 @@ include 'header.php'; ?>
 </main>
 
 <?php include 'footer.php'; ?>
-
+<script src="cursor.js"></script>
 <script src="search.js"></script>
 
 </html>

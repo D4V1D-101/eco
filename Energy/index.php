@@ -2,7 +2,8 @@
 $pageName = "Index";
 include 'head.php';
 include 'header.php'; ?>
-
+<div class="cursor-dot" data-cursor-dot></div>
+<div class="cursor-outline" data-cursor-outline></div>
 <main>
     <div class="wrapper">
         <div class="welcome">
@@ -23,6 +24,7 @@ include 'header.php'; ?>
 
 <script src="chart.js"></script>
 <script src="search.js"></script>
+<script src="cursor.js"></script>
 </body>
 
 </html>

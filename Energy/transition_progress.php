@@ -9,7 +9,8 @@ $result = $conn->query($sql);
 $pageName = "Transition Progress";
 include 'head.php';
 include 'header.php'; ?>
-
+<div class="cursor-dot" data-cursor-dot></div>
+<div class="cursor-outline" data-cursor-outline></div>
 <main>
     <div class="wrapper">
         <table id="progressTable">
