@@ -6,7 +6,7 @@ $result = $conn->query($sql);
 
 $pageName = "Countries";
 include 'head.php';
-include 'header.php';  
+include 'header.php';
 ?>
 <header>
     <input type="text" id="searchBox" placeholder="Search here...">
@@ -15,7 +15,7 @@ include 'header.php';
 <div class="cursor-outline" data-cursor-outline></div>
 <main>
     <div class="wrapper">
-    <td><a href="index.php"><button class="animated-button">Back</button></a></td>
+        <td><a href="index.php"><button class="animated-button">Back</button></a></td>
         <table id="countryTable">
             <thead>
                 <tr>
@@ -50,7 +50,7 @@ include 'header.php';
                     echo "<tr><td colspan='4'>Nothing to see here...</td></tr>";
                 } ?>
             </tbody>
-           
+
         </table>
     </div>
 </main>
